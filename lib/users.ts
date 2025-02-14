@@ -2,10 +2,13 @@ import prisma from '@/lib/prisma'
 import { User } from '@prisma/client'
 
 export async function createUser(data: User) {
+  console.log("🚀 ~ createUser ~ data:", data)
   try {
     const user = await prisma.user.create({ data })
+    console.log("🚀 ~ createUser ~ user:", user)
     return { user }
   } catch (error) {
+    console.log("🚀 ~ createUser ~ error:", error)
     return { error }
   }
 }
