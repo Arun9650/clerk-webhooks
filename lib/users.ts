@@ -27,7 +27,7 @@ export async function getUserById({
 
     const query = id ? { id } : { clerkUserId }
 
-    const user = await prisma.user.findUnique({ where: query })
+    const user = await prisma.user.findUnique({ where: id ? { id: Number(id) } : { clerkUserId } })
     return { user }
   } catch (error) {
     return { error }
@@ -37,7 +37,7 @@ export async function getUserById({
 export async function UpdateUser(id: string, data: Partial<User>) {
   try {
     const user = await prisma.user.update({
-      where: { id },
+      where: { id: Number(id) },
       data
     })
     return { user }
